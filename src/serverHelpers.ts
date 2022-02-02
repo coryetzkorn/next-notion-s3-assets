@@ -40,18 +40,18 @@ export const uploadFileToS3 = async (file: File, id: string) => {
         // Setting up S3 upload parameters
         const params = {
           Bucket: process.env.CUSTOM_AWS_BUCKET_NAME as string,
-          Key: `blog/${fileName}`, // File name you want to save as in S3
+          Key: fileName, // File name you want to save as in S3
           Body: fileBody,
           ContentType: contentType,
           ACL: 'public-read',
         }
         // Uploading files to the bucket
-        awsClient.upload(params, function(err: any) {
-          if (err) {
+        awsClient.upload(params, function(error: any) {
+          if (error) {
             console.error('⚠️ S3 upload error')
-            console.error(err)
+            console.error(error)
             reject()
-            throw err
+            throw error
           }
           console.log('✅ Asset uploaded to S3')
           resolve(response)
@@ -59,7 +59,9 @@ export const uploadFileToS3 = async (file: File, id: string) => {
       })
       .catch(error => {
         console.error('⚠️ Notion asset download error')
+        console.error(error)
         reject(error)
+        throw error
       })
   })
 }
