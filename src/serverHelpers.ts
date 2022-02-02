@@ -1,7 +1,7 @@
 import { awsClient } from './awsClient'
 import { getAssetExtensionFromUrl } from './polymorphicHelpers'
 
-export const uploadBlockToS3 = async (block: any) => {
+export const uploadAssetFromBlock = async (block: Block) => {
   const { type } = block
   const isImage = type === 'image'
   const sourceFile = isImage ? block.image?.file : block.video?.file
@@ -9,6 +9,20 @@ export const uploadBlockToS3 = async (block: any) => {
     return
   }
   return uploadFileToS3(sourceFile, block.id)
+}
+
+export const uploadAssetsFromBlocks = async (blocks: Block[]) => {
+  const assetBlocks = blocks.filter(block => {
+    const isImage = block.type === 'image' && block.image?.file?.url
+    const isVideo = block.type === 'video' && block.video?.type === 'file'
+    return isImage || isVideo
+  })
+  if (assetBlocks) {
+    await Promise.all(
+      assetBlocks.map(assetBlock => uploadAssetFromBlock(assetBlock))
+    )
+  }
+  return
 }
 
 export const uploadFileToS3 = async (file: File, id: string) => {

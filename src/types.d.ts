@@ -2,17 +2,20 @@ interface Image {
   caption?: TextEntity[] | null
   type: string
   file: File
+  [x: string | number | symbol]: unknown
 }
 
 interface File {
   url: string
   expiry_time: string
+  [x: string | number | symbol]: unknown
 }
 
 interface VideoFile {
   caption?: TextEntity[] | null
   type: 'file'
   file: File
+  [x: string | number | symbol]: unknown
 }
 
 interface VideoEmbed {
@@ -22,6 +25,7 @@ interface VideoEmbed {
   external?: {
     url: string
   }
+  [x: string | number | symbol]: unknown
 }
 interface Paragraph {
   text?: TextEntity[] | null
@@ -31,9 +35,10 @@ interface TextEntity {
   text: Text
   plain_text: string
   href?: null
+  [x: string | number | symbol]: unknown
 }
 
-interface PostContent {
+interface Block {
   object: string
   id: string
   created_time: string
@@ -44,4 +49,5 @@ interface PostContent {
   paragraph?: Paragraph | null
   image?: Image | null
   video?: VideoEmbed | VideoFile | null
+  [x: string | number | symbol]: unknown
 }

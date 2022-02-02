@@ -30,16 +30,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "next-notion-s3-images",
+  "name": "next-notion-s3-assets",
   "author": "Cory Etzkorn",
-  "module": "dist/next-notion-s3-images.esm.js",
+  "module": "dist/next-notion-s3-assets.esm.js",
   "size-limit": [
     {
-      "path": "dist/next-notion-s3-images.cjs.production.min.js",
+      "path": "dist/next-notion-s3-assets.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/next-notion-s3-images.esm.js",
+      "path": "dist/next-notion-s3-assets.esm.js",
       "limit": "10 KB"
     }
   ],

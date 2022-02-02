@@ -1,4 +1,4 @@
-import { uploadBlockToS3 } from './serverHelpers'
-import { getBlockS3Url } from './clientHelpers'
+import { uploadAssetFromBlock, uploadAssetsFromBlocks } from './serverHelpers'
+import { getAssetUrlFromBlock } from './clientHelpers'
 
-export { uploadBlockToS3, getBlockS3Url }
+export { uploadAssetFromBlock, uploadAssetsFromBlocks, getAssetUrlFromBlock }
