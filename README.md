@@ -1,5 +1,7 @@
 # Work in progress 😀
 
+[![CI](https://github.com/coryetzkorn/next-notion-s3-images/actions/workflows/main.yml/badge.svg)](https://github.com/coryetzkorn/next-notion-s3-images/actions/workflows/main.yml)
+
 Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
 
 > This TSDX setup is meant for developing libraries (not apps!) that can be published to NPM. If you’re looking to build a Node app, you could use `ts-node-dev`, plain `ts-node`, or simple `tsc`.
