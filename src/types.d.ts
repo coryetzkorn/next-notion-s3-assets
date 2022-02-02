@@ -11,13 +11,13 @@ interface File {
 
 interface VideoFile {
   caption?: TextEntity[] | null
-  type: "file"
+  type: 'file'
   file: File
 }
 
 interface VideoEmbed {
   caption?: TextEntity[] | null
-  type: "external"
+  type: 'external'
   file: File
   external?: {
     url: string
