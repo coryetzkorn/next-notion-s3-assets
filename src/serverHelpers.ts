@@ -12,7 +12,7 @@ export const uploadAssetFromBlock = async (
   if (!sourceFile) {
     return
   }
-  return uploadFileToS3(sourceFile, block.id, debugMode)
+  return uploadAssetFromFile(sourceFile, block.id, debugMode)
 }
 
 export const uploadAssetsFromBlocks = async (blocks: Block[]) => {
@@ -29,7 +29,7 @@ export const uploadAssetsFromBlocks = async (blocks: Block[]) => {
   return
 }
 
-export const uploadFileToS3 = async (
+export const uploadAssetFromFile = async (
   file: File,
   id: string,
   debugMode?: boolean

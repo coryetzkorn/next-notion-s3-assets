@@ -1,4 +1,14 @@
-import { uploadAssetFromBlock, uploadAssetsFromBlocks } from './serverHelpers'
-import { getAssetUrlFromBlock } from './clientHelpers'
+import {
+  uploadAssetFromBlock,
+  uploadAssetsFromBlocks,
+  uploadAssetFromFile,
+} from './serverHelpers'
+import { getAssetUrlFromBlock, getAssetUrlFromFile } from './clientHelpers'
 
-export { uploadAssetFromBlock, uploadAssetsFromBlocks, getAssetUrlFromBlock }
+export {
+  uploadAssetFromBlock,
+  uploadAssetsFromBlocks,
+  uploadAssetFromFile,
+  getAssetUrlFromBlock,
+  getAssetUrlFromFile,
+}

@@ -8,10 +8,14 @@ export function getAssetUrlFromBlock(block: Block, debugMode?: boolean) {
   if (!sourceFile) {
     return
   }
-  return getS3FileUrl(sourceFile, id, debugMode)
+  return getAssetUrlFromFile(sourceFile, id, debugMode)
 }
 
-function getS3FileUrl(file: File, id: string, debugMode?: boolean) {
+export function getAssetUrlFromFile(
+  file: File,
+  id: string,
+  debugMode?: boolean
+) {
   // Serve images from Notion API locally
   const sourceUrl = file.url
   if (process.env.NODE_ENV !== 'production' && !debugMode) {
