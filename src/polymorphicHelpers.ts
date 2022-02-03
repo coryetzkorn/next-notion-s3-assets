@@ -1,7 +1,18 @@
 export const getAssetExtensionFromUrl = (url: string) => {
-  const urlParts = url.split('.')
-  if (urlParts.length <= 1) {
-    throw new Error('Asset does not have a file extension')
+  if (url.includes('.jpg')) {
+    return 'jpg'
   }
-  return urlParts.pop()
+  if (url.includes('.png')) {
+    return 'png'
+  }
+  if (url.includes('.gif')) {
+    return 'gif'
+  }
+  if (url.includes('.mov')) {
+    return 'mov'
+  }
+  if (url.includes('.mp4')) {
+    return 'mp4'
+  }
+  return undefined
 }

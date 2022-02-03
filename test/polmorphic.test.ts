@@ -22,9 +22,4 @@ describe('Asset file extension detected', () => {
   it('supports assets with paths', () => {
     expect(getAssetExtensionFromUrl('path/image.jpg')).toEqual('jpg')
   })
-  it('throws error when no file extension present', () => {
-    expect(() => {
-      getAssetExtensionFromUrl('image')
-    }).toThrow('Asset does not have a file extension')
-  })
 })

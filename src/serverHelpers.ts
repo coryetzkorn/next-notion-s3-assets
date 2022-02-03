@@ -1,14 +1,18 @@
 import { awsClient } from './awsClient'
 import { getAssetExtensionFromUrl } from './polymorphicHelpers'
+import { Block, File } from './types'
 
-export const uploadAssetFromBlock = async (block: Block) => {
+export const uploadAssetFromBlock = async (
+  block: Block,
+  debugMode?: boolean
+) => {
   const { type } = block
   const isImage = type === 'image'
   const sourceFile = isImage ? block.image?.file : block.video?.file
   if (!sourceFile) {
     return
   }
-  return uploadFileToS3(sourceFile, block.id)
+  return uploadFileToS3(sourceFile, block.id, debugMode)
 }
 
 export const uploadAssetsFromBlocks = async (blocks: Block[]) => {
@@ -25,9 +29,13 @@ export const uploadAssetsFromBlocks = async (blocks: Block[]) => {
   return
 }
 
-export const uploadFileToS3 = async (file: File, id: string) => {
+export const uploadFileToS3 = async (
+  file: File,
+  id: string,
+  debugMode?: boolean
+) => {
   // Only upload assets to S3 in production
-  if (process.env.NODE_ENV !== 'production') {
+  if (!debugMode && process.env.NODE_ENV !== 'production') {
     return
   }
   const sourceAssetExtension = getAssetExtensionFromUrl(file.url)
@@ -37,9 +45,8 @@ export const uploadFileToS3 = async (file: File, id: string) => {
       .then(response => {
         const fileBody = response.body as any
         const contentType = response.headers.get('Content-Type') as string
-        // Setting up S3 upload parameters
         const params = {
-          Bucket: process.env.CUSTOM_AWS_BUCKET_NAME as string,
+          Bucket: process.env.AWS_S3_BUCKET_NAME as string,
           Key: fileName, // File name you want to save as in S3
           Body: fileBody,
           ContentType: contentType,
